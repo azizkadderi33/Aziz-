@@ -292,5 +292,26 @@
         "dice1": 3,
         "dice2": 5,
         "dice3": 3
+    },
+    {
+        "phien": 44,
+        "result": "xỉu",
+        "dice1": 2,
+        "dice2": 4,
+        "dice3": 2
+    },
+    {
+        "phien": 45,
+        "result": "xỉu",
+        "dice1": 5,
+        "dice2": 2,
+        "dice3": 2
+    },
+    {
+        "phien": 46,
+        "result": "xỉu",
+        "dice1": 1,
+        "dice2": 4,
+        "dice3": 1
     }
 ]
