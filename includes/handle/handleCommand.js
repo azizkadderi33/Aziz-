@@ -45,6 +45,23 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
     const findd = threadInf.adminIDs.find(el => el.id == senderID);
     if(typeof body === 'string' && body.startsWith(prefixbox) && dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !NDH.includes(senderID) && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true ) return api.sendMessage(`⚠️ Chỉ quản trị viên nhóm mới có thể sử dụng bot!`, event.threadID, event.messageID);
 
+       // فحص حالة البوت
+       const fs = require('fs');
+       const botStatusPath = './modules/commands/cache/bot_status.json';
+       if (fs.existsSync(botStatusPath)) {
+           const botStatus = JSON.parse(fs.readFileSync(botStatusPath));
+           if (botStatus.status === "inactive") {
+               // السماح فقط لأوامر التشغيل والإيقاف للأدمن
+               if (!ADMINBOT.includes(senderID.toString()) && !NDH.includes(senderID.toString())) {
+                   const allowedCommands = ["تشغيل", "ايقاف"];
+                   const currentCommand = body.replace(PREFIX, "").split(" ")[0];
+                   if (!allowedCommands.includes(currentCommand)) {
+                       return; // لا يرد على المستخدمين العاديين
+                   }
+               }
+           }
+       }
+
        if (userBanned.has(senderID) || threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) {
          if(!body.startsWith(PREFIX)) return
    if (!NDH.includes(senderID.toString()) && !ADMINBOT.includes(senderID.toString())) {
