@@ -310,68 +310,7 @@ module.exports = function ({ api, models }) {
       (global.data.threadData.get(event.threadID) || {}).PREFIX ||
       global.config.PREFIX;
 
-    if (
-      (event.body || "").startsWith(prefix) &&
-      event.senderID != api.getCurrentUserID() &&
-      !global.config.ADMINBOT.includes(event.senderID)
-    ) {
-      let thuebot;
-      try {
-        thuebot = JSON.parse(
-          require("fs").readFileSync(
-            process.cwd() + "/modules/commands/cache/data/thuebot.json",
-          ),
-        );
-      } catch {
-        thuebot = [];
-      }
-
-      let find_thuebot = thuebot.find(($) => $.t_id == event.threadID);
-      if (!find_thuebot && event.body.trim() !== `${prefix}callad`) {
-        if (event && event.threadID) {
-          return api.shareContact(
-            `
-𓆩⚠️  إعــلان تأجيــر بــوت  ⚠️𓆪
-━━━━━━━━━━━━━━━━━━
-❌ مجموعتك لم يتم تفعيل البوت فيها بعد.
-✉️ لاستعمال البوت، يُرجى استخدام الأمر: /callad للتواصل مع الإدارة.
-━━━━━━━━━━━━━━━━━━
-🌐 فيسبوك:
-`,
-            global.config.ADMINBOT[0],
-            event.threadID,
-          );
-        } else {
-          console.error("Lỗi khi shareContact");
-          return;
-        }
-      }
-
-      if (
-        find_thuebot &&
-        new Date(form_mm_dd_yyyy(find_thuebot.time_end)).getTime() <=
-          Date.now() + 25200000 &&
-        event.body.trim() !== `${prefix}callad`
-      ) {
-        if (event && event.threadID) {
-          return api.shareContact(
-            `
-𓆩⚠️  إعــلان تأجيــر بــوت  ⚠️𓆪
-━━━━━━━━━━━━━━━━━━
-❌ مجموعتك لم يتم تفعيل البوت فيها بعد.
-✉️ لاستعمال البوت، يُرجى استخدام الأمر: /callad للتواصل مع الإدارة.
-━━━━━━━━━━━━━━━━━━
-🌐 فيسبوك:
-`,
-            global.config.ADMINBOT[0],
-            event.threadID,
-          );
-        } else {
-          console.error("Lỗi khi shareContact");
-          return;
-        }
-      }
-    }
+    // Bot rental restrictions removed - البوت أصبح مجاني للجميع
     const checkttDataPath = __dirname + "/../modules/commands/checktt/";
     setInterval(async () => {
       const day_now = moment.tz("Asia/Ho_Chi_Minh").day();
