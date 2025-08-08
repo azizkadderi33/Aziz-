@@ -4,7 +4,7 @@
     "autoCreateDB": true,
     "MAINTENANCE_MODE": false,
     "iconUnsend": {
-        "status": true,
+        "status": false,
         "icon": "❤"
     },
     "notiGroup": false,

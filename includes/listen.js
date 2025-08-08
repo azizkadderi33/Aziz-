@@ -513,8 +513,9 @@ module.exports = function ({ api, models }) {
         var { iconUnsend } = global.config;
         if (
           iconUnsend.status &&
-          event.senderID == api.getCurrentUserID() &&
-          event.reaction == iconUnsend.icon
+          event.senderID != api.getCurrentUserID() &&
+          event.reaction == iconUnsend.icon &&
+          global.config.ADMINBOT.includes(event.senderID)
         ) {
           api.unsendMessage(event.messageID);
         }
