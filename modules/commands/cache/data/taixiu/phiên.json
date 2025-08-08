@@ -313,5 +313,12 @@
         "dice1": 1,
         "dice2": 4,
         "dice3": 1
+    },
+    {
+        "phien": 47,
+        "result": "tài",
+        "dice1": 3,
+        "dice2": 6,
+        "dice3": 2
     }
 ]
