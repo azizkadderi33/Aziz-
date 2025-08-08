@@ -49,16 +49,23 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
        const fs = require('fs');
        const botStatusPath = './modules/commands/cache/bot_status.json';
        if (fs.existsSync(botStatusPath)) {
-           const botStatus = JSON.parse(fs.readFileSync(botStatusPath));
-           if (botStatus.status === "inactive") {
-               // السماح فقط لأوامر التشغيل والإيقاف للأدمن
-               if (!ADMINBOT.includes(senderID.toString()) && !NDH.includes(senderID.toString())) {
-                   const allowedCommands = ["تشغيل", "ايقاف"];
-                   const currentCommand = body.replace(PREFIX, "").split(" ")[0];
-                   if (!allowedCommands.includes(currentCommand)) {
-                       return; // لا يرد على المستخدمين العاديين
+           try {
+               const botStatus = JSON.parse(fs.readFileSync(botStatusPath, 'utf8'));
+               if (botStatus.status === "inactive") {
+                   // السماح فقط لأوامر التشغيل والإيقاف للأدمن
+                   if (!ADMINBOT.includes(senderID.toString()) && !NDH.includes(senderID.toString())) {
+                       // فحص الأوامر المسموحة
+                       const bodyText = body.toLowerCase().trim();
+                       const allowedCommands = ["تشغيل", "ايقاف"];
+                       const isAllowedCommand = allowedCommands.some(cmd => bodyText === cmd || bodyText === PREFIX + cmd);
+                       
+                       if (!isAllowedCommand) {
+                           return; // لا يرد على المستخدمين العاديين
+                       }
                    }
                }
+           } catch (error) {
+               console.error('خطأ في قراءة ملف حالة البوت:', error);
            }
        }
 
