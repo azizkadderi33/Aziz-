@@ -1,10 +1,5 @@
 const { spawn } = require("child_process");
-const { readFileSync } = require("fs-extra");
-const http = require("http");
-const axios = require("axios");
-const semver = require("semver");
 const logger = require("./utils/log");
-const path = require('path');
 
 ///////////////////////////////////////////////////////////
 //========= Create website for dashboard/uptime =========//
@@ -14,15 +9,14 @@ const express = require("express");
 const app = express();
 
 // Define a route
-app.get('/', (request, response) => {
-    const result = `Nhớ ib Facebook Lương Trường Khôi để cập nhật file nha (free) Facebook: https://facebook.com/Khoi.Meta`;
+app.get('/', (response) => {
+    const result = `Nhớ ib Facebook Lương Trường Khôi để cập nhật file nha (free) Facebook: https://facebook.com/LunarKrystal.Dev`;
     response.send(result);
 });
 // Start the server
 app.listen(PORT, () => {
     console.log(`[ SECURITY ] -> Máy chủ khởi động tại port: ${PORT}`);
 });
-
 
 function startBot(message) {
     (message) ? logger(message, "BOT STARTING") : "";
@@ -47,6 +41,4 @@ function startBot(message) {
         logger("An error occurred: " + JSON.stringify(error), "[ Starting ]");
     });
 };
-
-axios.get("https://raw.githubusercontent.com/tandung1/Bot12/main/package.json").then((res) => {})
 startBot()

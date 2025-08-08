@@ -15,6 +15,7 @@
   "author": "Cao.C.Đạt",
   "license": "GPL-3.0",
   "dependencies": {
+    "@dongdev/fca-unofficial": "",
     "@google/generative-ai": "^0.17.0",
     "@miraipr0ject/assets": "^1.0.9",
     "acorn": "^8.10.0",

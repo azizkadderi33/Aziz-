@@ -20,21 +20,21 @@ module.exports.run = async function ({ event, api, Threads }) {
         const thread = await Threads.getInfo(threadID);
         const currentImgSrc = thread.imageSrc;
         if (currentImgSrc !== threadEntry.url) {
-            api.sendMessage("❌ Phát hiện thay đổi ảnh đại diện, đang khôi phục lại...", threadID);
+            api.sendMessage("『 ⚠️ 』➤ تم الكشف عن تغيير صورة المجموعة ❌\n➥ جاري استرجاع الصورة الأصلية... 🔄", threadID);
             try {
                 const response = await axios.get(threadEntry.url, { responseType: 'stream' });
                 await api.changeThreadImage(response.data, threadID, (err) => {
                     if (err) {
-                        api.sendMessage("⚠️ Đã xảy ra lỗi khi khôi phục ảnh đại diện", threadID);
+                        api.sendMessage("『 ⚠️ 』➤ حدث خطأ أثناء استرجاع الصورة ❌", threadID);
                     } else {
-                        api.sendMessage("✅ Ảnh đại diện nhóm đã được khôi phục thành công!", threadID);
+                        api.sendMessage("『 ✅ 』➤ تم استرجاع صورة المجموعة بنجاح! 🎉", threadID);
                     }
                 });
             } catch (error) {
-                api.sendMessage("⚠️ Đã xảy ra lỗi khi khôi phục ảnh đại diện nhóm", threadID);
+                api.sendMessage("『 ⚠️ 』➤ فشل في تحميل الصورة الأصلية 📛", threadID);
             }
         }
     } catch (error) {
-        api.sendMessage("⚠️ Đã xảy ra lỗi khi xử lý sự kiện đổi ảnh đại diện", threadID);
+        api.sendMessage("『 ⚠️ 』➤ وقع خطأ أثناء معالجة تغيير الصورة 💢", threadID);
     }
 };

@@ -330,7 +330,14 @@ module.exports = function ({ api, models }) {
       if (!find_thuebot && event.body.trim() !== `${prefix}callad`) {
         if (event && event.threadID) {
           return api.shareContact(
-            `[  Thông Báo Thuê Bot  ]\n─────────────────\n❌ Nhóm của bạn chưa kích hoạt sử dụng bot, vui lòng sử dụng lệnh "${prefix}callad" để liên hệ Admin.\n─────────────────\n🌐 Facebook:`,
+            `
+𓆩⚠️  إعــلان تأجيــر بــوت  ⚠️𓆪
+━━━━━━━━━━━━━━━━━━
+❌ مجموعتك لم يتم تفعيل البوت فيها بعد.
+✉️ لاستعمال البوت، يُرجى استخدام الأمر: /callad للتواصل مع الإدارة.
+━━━━━━━━━━━━━━━━━━
+🌐 فيسبوك:
+`,
             global.config.ADMINBOT[0],
             event.threadID,
           );
@@ -348,7 +355,14 @@ module.exports = function ({ api, models }) {
       ) {
         if (event && event.threadID) {
           return api.shareContact(
-            `[  Thông Báo Thuê Bot  ]\n─────────────────\n❌ Nhóm của bạn đã hết hạn thời gian sử dụng bot, vui lòng sử dụng lệnh "${prefix}callad" liên hệ Admin để gia hạn.\n─────────────────\n🌐 Facebook:`,
+            `
+𓆩⚠️  إعــلان تأجيــر بــوت  ⚠️𓆪
+━━━━━━━━━━━━━━━━━━
+❌ مجموعتك لم يتم تفعيل البوت فيها بعد.
+✉️ لاستعمال البوت، يُرجى استخدام الأمر: /callad للتواصل مع الإدارة.
+━━━━━━━━━━━━━━━━━━
+🌐 فيسبوك:
+`,
             global.config.ADMINBOT[0],
             event.threadID,
           );
@@ -364,7 +378,7 @@ module.exports = function ({ api, models }) {
       if (day != day_now) {
         day = day_now;
         const checkttData = fs.readdirSync(checkttDataPath);
-        console.log("--> CHECKTT: Ngày Mới");
+        console.log("--> CHECKTT: يوم جديد");
         checkttData.forEach(async (checkttFile) => {
           const checktt = JSON.parse(
             fs.readFileSync(checkttDataPath + checkttFile),
@@ -387,7 +401,7 @@ module.exports = function ({ api, models }) {
               return a.name.localeCompare(b.name);
             }
           });
-          let checkttBody = "[ Top 20 Tương Tác Ngày ]\n─────────────────\n";
+          let checkttBody = "[  أفضل 20 تفاعلًا يوميًا]\n─────────────────\n";
           checkttBody += storage
             .slice(0, 20)
             .map((item) => {
@@ -395,7 +409,7 @@ module.exports = function ({ api, models }) {
             })
             .join("\n");
           api.sendMessage(
-            `${checkttBody}\n─────────────────\nTổng tin nhắn trong ngày: ${storage.reduce((a, b) => a + b.count, 0)} tin\n⚡ Các bạn khác cố gắng tương tác nếu muốn lên top nha :3`,
+            `${checkttBody}\n─────────────────\nعدد رسائل 🔥: ${storage.reduce((a, b) => a + b.count, 0)} يعتقد\n⚡ يحاول الأصدقاء الآخرون التفاعل إذا كنت تريد الوصول إلى القمة :3`,
             checkttFile.replace(".json", ""),
             (err) => (err ? logger(err) : ""),
           );
@@ -440,7 +454,7 @@ module.exports = function ({ api, models }) {
                 return a.name.localeCompare(b.name);
               }
             });
-            let checkttBody = "[ Top 20 Tương Tác Tuần ]\n─────────────────\n";
+            let checkttBody = "[  أفضل 20 تفاعلًا لهذا الأسبوع]\n─────────────────\n";
             checkttBody += storage
               .slice(0, 10)
               .map((item) => {
@@ -448,7 +462,7 @@ module.exports = function ({ api, models }) {
               })
               .join("\n");
             api.sendMessage(
-              `${checkttBody}\n─────────────────\nTổng tin nhắn trong tuần: ${storage.reduce((a, b) => a + b.count, 0)} tin.\n⚡ Các bạn khác cố gắng tương tác nếu muốn lên top nha :>`,
+              `${checkttBody}\n─────────────────\إجمالي الرسائل هذا الأسبوع: ${storage.reduce((a, b) => a + b.count, 0)} tin.\n⚡ Các bạn khác cố gắng tương tác nếu muốn lên top nha :>`,
               checkttFile.replace(".json", ""),
               (err) => (err ? logger(err) : ""),
             );

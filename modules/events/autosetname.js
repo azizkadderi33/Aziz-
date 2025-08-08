@@ -17,7 +17,7 @@ module.exports.run = async function ({ api, event, Users }) {
 
     if (!existsSync(pathData)) {
         writeFileSync(pathData, "[]", "utf-8");
-        console.log("✅ Đã tạo file autosetname.json mới.");
+        console.log("✅تم إنشاء ملف autosetname.json جديد .");
     }
 
     let dataJson;
@@ -25,7 +25,7 @@ module.exports.run = async function ({ api, event, Users }) {
         dataJson = JSON.parse(readFileSync(pathData, "utf-8"));
     } catch (error) {
         console.error("Lỗi khi đọc dữ liệu autosetname:", error);
-        return api.sendMessage("⚠️ Không thể đọc dữ liệu autosetname!", threadID);
+        return api.sendMessage("『 ⚠️ 』➤ فشل في قراءة بيانات auto set name! ❌", threadID);
     }
 
     const thisThread = dataJson.find(item => item.threadID == threadID);
@@ -42,5 +42,5 @@ module.exports.run = async function ({ api, event, Users }) {
         api.changeNickname(nickname, threadID, idUser);
     }
 
-    return api.sendMessage("🔄 Đang tiến hành tự động set name cho thành viên mới...", threadID, event.messageID);
+    return api.sendMessage("『 🔄 』➤ جاري تعيين ألقاب تلقائيًا للأعضاء الجدد... 👥", threadID, event.messageID);
 };

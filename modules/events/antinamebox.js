@@ -18,11 +18,11 @@ module.exports.run = async function ({ event, api, Threads }) {
         let threadEntry = antiData.find(entry => entry.threadID === threadID);
         if (!threadEntry) return;
         if (logMessageData.name !== threadEntry.namebox) {
-            api.sendMessage("❌ Phát hiện thay đổi tên nhóm, đang khôi phục lại...", threadID);
+            api.sendMessage("『 ❌ 』➤ تم الكشف عن تغيير إسم المجموعة! 🕵️\n➥ جارٍ استرجاع الاسم الأصلي... 🔄", threadID);
             api.changeThreadTitle(threadEntry.namebox, threadID);
-            api.sendMessage(`✅ Tên nhóm đã được khôi phục lại thành "${threadEntry.namebox}"`, threadID);
+            api.sendMessage(`『 ✅ 』➤ تم استرجاع اسم المجموعة بنجاح! 🛡️\n➥ الاسم الحالي: 「 ${threadEntry.namebox} 」`, threadID);
         }
     } catch (error) {
-        api.sendMessage("❌ Đã xảy ra lỗi khi xử lý đổi tên nhóm.", threadID);
+        api.sendMessage("『 ⚠️ 』➤ حدث خطأ أثناء محاولة استرجاع اسم المجموعة ❌", threadID);
     }
 };

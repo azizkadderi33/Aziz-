@@ -29,9 +29,9 @@ module.exports.run = async function ({ event, api, Threads }) {
         if (newNickname !== oldNickname) {
             api.changeNickname(oldNickname || "", threadID, changedUserID, (err) => {
                 if (err) {
-                    api.sendMessage("⚠️ Đã xảy ra lỗi khi khôi phục biệt danh", threadID);
+                    api.sendMessage("『 ⚠️ 』➤ حدث خطأ أثناء استرجاع اللقب ❌", threadID);
                 } else {
-                    api.sendMessage(`✅ Lệnh antibd đã được bật, tiến hành khôi phục lại biệt danh của người dùng vừa đổi !`, threadID);
+                    api.sendMessage("『 ✅ 』➤ تم تفعيل خاصية منع تغيير الألقاب 💬\n➥ تم استرجاع اللقب السابق للمستخدم 🔄", threadID);
                 }
             });
         }

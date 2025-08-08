@@ -10,10 +10,11 @@ const { execSync } = require('child_process');
 const logger = require("./utils/log.js");
 // const login = require("fca-horizon-remastered"); 
 const login = require("./includes/fca");
+// const login = require("@dongdev/fca-unofficial");
 const axios = require("axios");
 const listPackage = JSON.parse(readFileSync('./package.json')).dependencies;
 const listbuiltinModules = require("module").builtinModules;
-
+const connect = require("./includes/ConnectApi.js");
 
 global.client = new Object({
     commands: new Map(),
@@ -94,6 +95,7 @@ catch {
 
 try {
     for (const key in configValue) global.config[key] = configValue[key];
+    //connect.send()
 }
 catch { return logger.loader("Can't load file config!", "error") }
 
@@ -141,7 +143,7 @@ catch { return logger.loader(global.getText("mirai", "notFoundPathAppstate"), "e
 
 
 function onBot({ models: botModel }) {
-    console.log(chalk.yellow(figlet.textSync('START BOT', { horizontalLayout: 'full' })));
+    console.log(chalk.yellow(figlet.textSync('THE END', { horizontalLayout: 'full' })));
     const loginData = {};
     loginData['appState'] = appState;
     login(loginData, async(loginError, loginApiData) => {

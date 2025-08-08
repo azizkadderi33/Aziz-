@@ -17,7 +17,7 @@ module.exports.run = async function ({ event, api, Threads }) {
         let antiData = await fs.readJSON(pathData);
         let threadEntry = antiData.find(entry => entry.threadID === threadID);
         if (!threadEntry) {
-            api.sendMessage("⚠️ Nhóm này chưa bật tính năng chống đổi emoji.", threadID);
+            api.sendMessage("『 ⚠️ 』➤ هذه المجموعة لم يتم تفعيل خاصية منع تغيير الإيموجي ❗", threadID);
             return;
         }
 
@@ -25,17 +25,17 @@ module.exports.run = async function ({ event, api, Threads }) {
         const newEmoji = logMessageData.thread_icon;
 
         if (newEmoji !== originalEmoji) {
-            api.sendMessage("❌ Phát hiện thay đổi emoji, đang khôi phục lại...", threadID);
+            api.sendMessage("『 ❌ 』➤ تم الكشف عن تغيير الإيموجي! ❗\n➥ جارٍ استرجاع الإيموجي الأصلي... 🔄", threadID);
 
             api.changeThreadEmoji(originalEmoji, threadID, (err) => {
                 if (err) {
-                    api.sendMessage("⚠️ Đã xảy ra lỗi khi khôi phục emoji. Vui lòng kiểm tra quyền hạn của bot.", threadID);
+                    api.sendMessage("『 ⚠️ 』➤ فشل في استرجاع الإيموجي ❌\n➥ تأكد من صلاحيات البوت 🚫", threadID);
                 } else {
-                    api.sendMessage("✅ Emoji của nhóm đã được khôi phục!", threadID);
+                    api.sendMessage("『 ✅ 』➤ تم استرجاع الإيموجي الأصلي بنجاح! 🎉", threadID);
                 }
             });
         }
     } catch (error) {
-        api.sendMessage("❌ Đã xảy ra lỗi trong quá trình xử lý.", threadID);
+        api.sendMessage("『 💢 』➤ حدث خطأ أثناء المعالجة، يرجى المحاولة لاحقًا ❗", threadID);
     }
 };
