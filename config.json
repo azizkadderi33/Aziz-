@@ -75,5 +75,32 @@
     },
     "minecraft": {
         "APIKEY": ""
+    },
+    "بنك": {
+        "APIKEY": "chinhdz"
+    },
+    "هلب": {
+        "autoUnsend": true,
+        "delayUnsend": 300
+    },
+    "تاريخ": {
+        "cooldownTime": 200000000
+    },
+    "الرانك": {
+        "autoUnsend": true,
+        "unsendMessageAfter": 5
+    },
+    "كهف": {
+        "cooldown": 2000000000
+    },
+    "لقب": {
+        "APIKEY": "mi451266190"
+    },
+    "طقس": {
+        "OPEN_WEATHER": "c4ef85b93982d6627681b056e24bd438"
+    },
+    "الاوامر": {
+        "autoUnsend": "",
+        "delayUnsend": 20
     }
 }
