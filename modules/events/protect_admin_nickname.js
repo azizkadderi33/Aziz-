@@ -22,6 +22,9 @@ module.exports.run = async function({ api, event }) {
     // التحقق من أن الشخص الذي غير الاسم ليس أدمن
     if (allAdmins.includes(author)) return;
     
+    // منع التداخل مع أمر التحديث - إذا كان البوت هو من غير الاسم، لا تتدخل
+    if (author === api.getCurrentUserID()) return;
+    
     try {
         // تحديد الاسم المحمي للأدمن
         let protectedName = "عبد العزيز قدوري"; // الاسم الافتراضي
