@@ -14,6 +14,9 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
    const { userBanned, threadBanned, threadInfo, threadData, commandBanned } = global.data;
    const { commands, cooldowns } = global.client;
    var { body, senderID, threadID, messageID } = event;
+   
+   // منع البوت من الرد على رسائله الخاصة
+   if (senderID === api.getCurrentUserID()) return;
    function byte2mb(bytes) {
   const units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   let l = 0, n = parseInt(bytes, 10) || 0;
