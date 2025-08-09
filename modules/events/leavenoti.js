@@ -69,7 +69,7 @@ module.exports.run = async function ({ api, event, Users, Threads }) {
     }
     if (existsSync(path)) mkdirSync(path, { recursive: true });
 
-    (typeof data.customLeave == "undefined") ? msg = "[ Thành Viên Thoát Nhóm ]\n─────────────────\n👤 Thành viên: {name}\n📌 Lý do: {type}\n📆 Thoát nhóm vào lúc {thu}\n⏰ Thời gian: {time}" : msg = data.customLeave;
+    (typeof data.customLeave == "undefined") ? msg = "[ غادر العضو المجموعة ]\n──────────────────\n العضو: {name}\n السبب: {type}\n غادر المجموعة في {thu}\n الوقت: {time}" : msg = data.customLeave;
     msg = msg.replace(/\{name}/g, name).replace(/\{type}/g, type).replace(/\{time}/g, time).replace(/\{uid}/g, uid).replace(/\{thu}/g, thu); 
     return api.sendMessage(threadID, async () => {
 await api.shareContact(`${msg}`, event.logMessageData.leftParticipantFbId, threadID);

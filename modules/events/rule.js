@@ -17,7 +17,7 @@ if (typeof thread["rule"] != "undefined" && thread["rule"] == false) return;
       if (thisThread.listRule.length != 0) {
                 var msg = "", index = 0;
                 for (const item of thisThread.listRule) msg += `${index+=1}. ${item}\n`;
-		return api.sendMessage({body:`[ LUẬT CỦA NHÓM ]\n\nThành viên vừa mới vào vui lòng đọc kĩ luật sau:\n${msg}`, attachment: (await global.nodemodule["axios"]({
+		return api.sendMessage({body:`[ قواعد المجموعة ]\n\nالرجاء من الأعضاء الجدد قراءة القواعد التالية بعناية:\n${msg}`, attachment: (await global.nodemodule["axios"]({
 url: (await global.nodemodule["axios"]('https://api.dungkon.id.vn/girl-video')).data.url,
 method: "GET",
 responseType: "stream"
