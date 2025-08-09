@@ -85,10 +85,34 @@ module.exports.run = async function({ api, event, args, Threads }) {
                     console.log(`تعذر تغيير الاسم في المجموعة: ${group.name}`);
                 }
                 
+                // حماية وتحديث أسماء الأدمن
+                const adminIds = [...global.config.ADMINBOT, ...global.config.NDH];
+                for (const adminId of adminIds) {
+                    try {
+                        // تحديد الاسم المحمي للأدمن
+                        let protectedName = "عبد العزيز قدوري"; // الاسم الافتراضي للأدمن الرئيسي
+                        
+                        // إذا كان الأدمن مختلف يمكن إضافة أسماء أخرى
+                        if (adminId === "61554809034786") {
+                            protectedName = "عبد العزيز قدوري";
+                        }
+                        
+                        await api.changeNickname(
+                            protectedName,
+                            group.threadID,
+                            adminId
+                        );
+                        
+                        console.log(`تم تحديث اسم الأدمن ${adminId} في المجموعة: ${group.name}`);
+                    } catch (adminNickError) {
+                        console.log(`تعذر تحديث اسم الأدمن في المجموعة: ${group.name}`);
+                    }
+                }
+                
                 successCount++;
                 
                 // تأخير قصير لتجنب الحظر
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 
             } catch (error) {
                 console.error(`خطأ في إرسال التحديث للمجموعة ${group.name}:`, error);
