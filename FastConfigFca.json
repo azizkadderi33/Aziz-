@@ -11,7 +11,7 @@
 	"AutoLogin": false,
 	"BroadCast": true,
 	"AuthString": "",
-	"EncryptFeature": true,
+	"EncryptFeature": false,
 	"ResetDataLogin": false,
 	"AutoInstallNode": true,
 	"AntiSendAppState": true,
